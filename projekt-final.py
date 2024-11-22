@@ -73,7 +73,7 @@ def rys_graf(graf):
     nx.draw_networkx_edge_labels(G, pos, edge_labels=labels1)
     # nx.draw_networkx_labels(G, pos, labels=labels2, font_color="black")
 
-
+# main
 def main():
     dane1 = dane()
     graf = los_graf(dane1[0], dane1[1], dane1[3])
