@@ -2,6 +2,7 @@ import random
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
+from operator import itemgetter
 
 def dane():
     n = int(input("Podaj liczbę schronisk (n): "))
@@ -36,22 +37,16 @@ def los_graf(n, m, W):
         wys = random.randint(1, W)
         graf[elem1][elem2], graf[elem2][elem1] = wys, wys
 
-    if m == n-1:
-        return graf, nazwy
-    
-    # dodajemy pozostale krawedzie
-    else:
-        for i in range(m-n+1):
+    dodatkowe_krawedzie = m - (n - 1)
+    while dodatkowe_krawedzie > 0:
+        k = random.randint(0, n-1)
+        l = random.randint(0, n-1)
+        if k != l and graf[k][l] == 0:
             wys = random.randint(1, W)
-            k = random.randint(1,n-1)
-            l = random.randint(1,n-1)
-            while k == l:
-                l = random.randint(1,n-1)
-            while graf[k][l] != 0 or k == l:
-                k = random.randint(1,n-1)
-                l = random.randint(1,n-1)
-            graf[k][l], graf[l][k] = wys, wys
-        return graf, nazwy
+            graf[k][l] = wys
+            graf[l][k] = wys
+            dodatkowe_krawedzie -= 1
+    return graf, nazwy
 
 def lista_zamiana(lista):
     n = len(lista)
@@ -70,10 +65,10 @@ def los_nazwy(n):
 
 def osiagalne_wierzch(graf, maxW, start = 0):
     n = len(graf) # liczba wierzcholkow
-    odwiedzone = set()
+    odwiedzone = []
         
     def dfs(a):
-        odwiedzone.add(a)
+        odwiedzone.append(a)
         for sasiad in range(n):
             if sasiad not in odwiedzone and graf[a][sasiad] != 0 and graf[a][sasiad] < maxW:
                 dfs(sasiad)
@@ -103,7 +98,7 @@ def main():
     wynik = osiagalne_wierzch(graf, dane1[2],)
     rys_graf(graf, nazwy)
 
-    print('Zaczynając z wierzchołka 0 profesor Bajtazar moze dojść do wierzchołków:', wynik)
+    print('Zaczynając z wierzchołka', nazwy[0], 'profesor Bajtazar moze dojść do wierzchołków:', list(itemgetter(*wynik)(nazwy)))
 
 if __name__ == "__main__":
     main()
