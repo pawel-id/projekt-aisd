@@ -43,8 +43,7 @@ def los_graf(n, m, W):
         l = random.randint(0, n-1)
         if k != l and graf[k][l] == 0:
             wys = random.randint(1, W)
-            graf[k][l] = wys
-            graf[l][k] = wys
+            graf[k][l], graf[l][k] = wys, wys
             dodatkowe_krawedzie -= 1
     return graf, nazwy
 
@@ -70,7 +69,7 @@ def osiagalne_wierzch(graf, maxW, start = 0):
     def dfs(a):
         odwiedzone.append(a)
         for sasiad in range(n):
-            if sasiad not in odwiedzone and graf[a][sasiad] != 0 and graf[a][sasiad] < maxW:
+            if sasiad not in odwiedzone and graf[a][sasiad] != 0 and graf[a][sasiad] <= maxW:
                 dfs(sasiad)
         
     dfs(start)
@@ -98,7 +97,8 @@ def main():
     wynik = osiagalne_wierzch(graf, dane1[2],)
     rys_graf(graf, nazwy)
 
-    print('Zaczynając z wierzchołka', nazwy[0], 'profesor Bajtazar moze dojść do wierzchołków:', list(itemgetter(*wynik)(nazwy)))
+    print('Zaczynając z wierzchołka', nazwy[0], 'profesor Bajtazar moze dojść do wierzchołków:', list(itemgetter(*wynik)(nazwy)),
+          'przy maksymalnej bezpiecznej wysokości = ', dane1[2])
 
 if __name__ == "__main__":
     main()
