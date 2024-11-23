@@ -21,7 +21,11 @@ def dane():
     if W < Wmax:
         raise Exception("Wysokość W musi być mniejsza lub równa Wmax")
     
-    return n, m, Wmax, W
+    numer = int(input("Podaj numer schroniska, z którego Bajtazar ma startować:"))
+    if numer < 0 or numer >= n:
+        raise Exception("Numer schroniska musi być > 0 i < ", n)
+    
+    return n, m, Wmax, W, numer
 
 def los_graf(n, m, W):   
     graf = [[0 for i in range(n)] for j in range(n)]
@@ -94,10 +98,10 @@ def rys_graf(graf, nazwy = 0):
 def main():
     dane1 = dane()
     graf, nazwy = los_graf(dane1[0], dane1[1], dane1[3])
-    wynik = osiagalne_wierzch(graf, dane1[2],)
+    wynik = osiagalne_wierzch(graf, dane1[2], dane1[4])
     rys_graf(graf, nazwy)
 
-    print('Zaczynając z wierzchołka', nazwy[0], 'profesor Bajtazar moze dojść do wierzchołków:', list(itemgetter(*wynik)(nazwy)),
+    print('Zaczynając z wierzchołka', nazwy[dane1[4]], 'profesor Bajtazar moze dojść do wierzchołków:', list(itemgetter(*wynik)(nazwy)),
           'przy maksymalnej bezpiecznej wysokości = ', dane1[2])
 
 if __name__ == "__main__":
