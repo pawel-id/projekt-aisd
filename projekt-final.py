@@ -94,15 +94,16 @@ def rys_graf(graf, nazwy = 0):
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels1)
         nx.draw_networkx_labels(G, pos, labels=labels2, font_color="black")
 
+    plt.show()
+
 
 def main():
     dane1 = dane()
     graf, nazwy = los_graf(dane1[0], dane1[1], dane1[3])
     wynik = osiagalne_wierzch(graf, dane1[2], dane1[4])
-    rys_graf(graf, nazwy)
-
     print('Zaczynając z wierzchołka', nazwy[dane1[4]], 'profesor Bajtazar moze dojść do wierzchołków:', list(itemgetter(*wynik)(nazwy)),
           'przy maksymalnej bezpiecznej wysokości = ', dane1[2])
+    rys_graf(graf, nazwy)
 
 if __name__ == "__main__":
     main()
