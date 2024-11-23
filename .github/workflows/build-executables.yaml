@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  build-executable:
+  build-executable-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,4 +25,25 @@ jobs:
         with:
           name: executable
           path: dist/projekt-final/
+
+  build-executable-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          venv\Scripts\activate.bat
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build executable
+        run: |
+          pip install pyinstaller
+          pyinstaller projekt-final.py
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: executable
+          path: dist\projekt-final\
 
