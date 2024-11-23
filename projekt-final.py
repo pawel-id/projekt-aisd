@@ -59,7 +59,10 @@ def lista_zamiana(lista):
 def los_nazwy(n):    
     nazwy_schronisk = ["Chatka", "Szrenica", "Strzecha", "Pasterka", "Kopa", "Puchatek", "Rycerz", "Halny", "Doktorek", "Profesorek",
                     "Rycerz", "Polanka", "Rysinka", "Sudetki", "Łysinka", "Domek", "Schron", "Czarownica", "Gzik", "Bigos",
-                    "Piwko", "Słoneczne", "Pod chmurką", "Gwiazdka", "Milutkie", "Polanka", "Wrzosik", "Po drodze", "Tęczowe", "Tatrzańskie"]
+                    "Piwko", "Słoneczne", "Pod chmurką", "Gwiazdka", "Milutkie", "Polanka", "Wrzosik", "Po drodze", "Tęczowe", "Tatrzańskie",
+                  "Korona", "Burzowe", "Spadająca gwiazda", "Taterka", "Śnieżka", "Schron", "Wiedźma", "Zielone", "Niebieskie", "Srebrne",
+                  "Przystanek", "Górka", "Wirch", "Wysokie", "Niżynka", "Kamyczek", "Na zakręcie", "Radosne", "Grota", "Słone",
+                   "Zakręcone", "Piękne", "Koziczka", "Salamandra", "Koziołek", "Smaczne", "Przytulne", "Zacisze", "Cieplutkie", "Odpoczynek"]
     if n > len(nazwy_schronisk):
         return
     
@@ -101,7 +104,8 @@ def main():
     dane1 = dane()
     graf, nazwy = los_graf(dane1[0], dane1[1], dane1[3])
     wynik = osiagalne_wierzch(graf, dane1[2], dane1[4])
-    print('Zaczynając z wierzchołka', nazwy[dane1[4]], 'profesor Bajtazar moze dojść do wierzchołków:', list(itemgetter(*wynik)(nazwy)),
+    nazwy_osiagalnych = [(nazwy[indeks], indeks) for indeks in wynik]
+    print('Zaczynając z wierzchołka', nazwy[dane1[4]], '(numer', dane1[4], ')', 'profesor Bajtazar moze dojść do wierzchołków:', nazwy_osiagalnych,
           'przy maksymalnej bezpiecznej wysokości = ', dane1[2])
     rys_graf(graf, nazwy)
 
