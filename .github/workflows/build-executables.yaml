@@ -6,6 +6,6 @@ on:
 
 jobs:
   build-executable:
-    runs-on: macos
+    runs-on: macos-latest
     steps:
       - run: echo "hello"
