@@ -59,7 +59,10 @@ def lista_zamiana(lista):
 def los_nazwy(n):    
     nazwy_schronisk = ["Chatka", "Szrenica", "Strzecha", "Pasterka", "Kopa", "Puchatek", "Rycerz", "Halny", "Doktorek", "Profesorek",
                     "Rycerz", "Polanka", "Rysinka", "Sudetki", "Łysinka", "Domek", "Schron", "Czarownica", "Gzik", "Bigos",
-                    "Piwko", "Słoneczne", "Pod chmurką", "Gwiazdka", "Milutkie", "Polanka", "Wrzosik", "Po drodze", "Tęczowe", "Tatrzańskie"]
+                    "Piwko", "Słoneczne", "Pod chmurką", "Gwiazdka", "Milutkie", "Polanka", "Wrzosik", "Po drodze", "Tęczowe", "Tatrzańskie",
+                  "Korona", "Burzowe", "Spadająca gwiazda", "Taterka", "Śnieżka", "Schron", "Wiedźma", "Zielone", "Niebieskie", "Srebrne",
+                  "Przystanek", "Górka", "Wirch", "Wysokie", "Niżynka", "Kamyczek", "Na zakręcie", "Radosne", "Grota", "Słone",
+                   "Zakręcone", "Piękne", "Koziczka", "Salamandra", "Koziołek", "Smaczne", "Przytulne", "Zacisze", "Cieplutkie", "Odpoczynek"]
     if n > len(nazwy_schronisk):
         return
     
