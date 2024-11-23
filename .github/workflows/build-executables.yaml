@@ -8,4 +8,21 @@ jobs:
   build-executable:
     runs-on: macos-latest
     steps:
-      - run: echo "hello"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build executable
+        run: |
+          pip install pyinstaller
+          pyinstaller projekt-final.py
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: executable
+          path: dist/
+
