@@ -2,7 +2,6 @@ import random
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
-from operator import itemgetter
 
 def dane():
     n = int(input("Podaj liczbę schronisk (n): "))
@@ -105,8 +104,8 @@ def main():
     graf, nazwy = los_graf(dane1[0], dane1[1], dane1[3])
     wynik = osiagalne_wierzch(graf, dane1[2], dane1[4])
     nazwy_osiagalnych = [(nazwy[indeks], indeks) for indeks in wynik]
-    print('Zaczynając z wierzchołka', nazwy[dane1[4]], '(numer', dane1[4], ')', 'profesor Bajtazar moze dojść do wierzchołków:', nazwy_osiagalnych,
-          'przy maksymalnej bezpiecznej wysokości = ', dane1[2])
+    print('Zaczynając z wierzchołka', nazwy[dane1[4]], '(numer', dane1[4], ')', 'profesor Bajtazar moze dojść do wierzchołków:\n', 
+          nazwy_osiagalnych,'przy maksymalnej bezpiecznej wysokości = ', dane1[2])
     rys_graf(graf, nazwy)
 
 if __name__ == "__main__":
